@@ -7,4 +7,7 @@
     <string name="text2">TEXT2</string>
     <string name="enter_passwd">Enter passwd</string>
     <string name="enter_login">Enter login</string>
+    <string name="dz1">ДЗ1</string>
+    <string name="ДЗ2">dz2</string>
+    <string name="cw_2">CW 2</string>
 </resources>

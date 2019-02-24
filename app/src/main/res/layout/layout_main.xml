@@ -17,16 +17,49 @@
         android:layout_gravity="center"
         android:layout_marginBottom="18dp"/>
 
-    <Button
-        android:id="@+id/dz1"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="dz1"/>
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/dz2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="dz2"/>
+        <LinearLayout
+            android:id="@+id/cw"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/cw2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cw_2"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dz"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+            <Button
+                android:id="@+id/dz1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dz1"/>
+
+            <Button
+                android:id="@+id/dz2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ДЗ2"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
 
 </LinearLayout>

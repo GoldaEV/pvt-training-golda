@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#bbbbbb">
+
+    <LinearLayout
+        android:id="@+id/flags"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/t1"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <FrameLayout
+                android:id="@+id/flag_aust"
+                android:layout_width="150dp"
+                android:layout_height="90dp"
+                android:background="@color/red"
+                android:orientation="vertical"        >
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/white">
+                </View>
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:id="@+id/flag_poland"
+                android:layout_width="150dp"
+                android:layout_height="90dp"
+                android:background="@color/red"
+                android:layout_marginTop="16dp"
+                android:weightSum="2"
+                android:orientation="vertical">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@color/white"/>
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/flag_italy"
+                android:layout_width="150dp"
+                android:layout_height="90dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp">
+
+                <View
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left"
+                    android:background="@color/green">
+                </View>
+
+                <View
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@color/white">
+                </View>
+
+                <View
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:background="@color/red">
+                </View>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/t2"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <LinearLayout
+                android:id="@+id/flag_columb"
+                android:layout_width="150dp"
+                android:layout_height="90dp"
+                android:orientation="vertical"
+                android:weightSum="4">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:layout_gravity="left"
+                    android:background="#FCD116">
+                </View>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="left"
+                    android:background="@color/blue">
+                </View>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="left"
+                    android:background="#CE1126">
+                </View>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/flag_madagaskar"
+                android:layout_width="150dp"
+                android:layout_height="90dp"
+                android:background="@color/green"
+                android:layout_marginTop="16dp"
+                android:weightSum="2"
+                android:orientation="vertical">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@color/red"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/flag_tailand"
+                android:layout_width="150dp"
+                android:layout_height="90dp"
+                android:orientation="vertical"
+                android:layout_marginTop="16dp"
+                android:weightSum="6"
+                android:background="#A51931">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="left"
+                    android:background="#A51931">
+                </View>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="left"
+                    android:background="@color/white">
+                </View>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:layout_gravity="left"
+                    android:background="#2D2A4A">
+                </View>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="left"
+                    android:background="@color/white">
+                </View>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="150dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="24dp"
+        android:layout_below="@+id/flags"
+        android:layout_centerHorizontal="true"
+        android:background="@color/red">
+
+        <View
+            android:layout_width="15dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:layout_marginLeft="35dp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:background="@color/white"
+            android:layout_gravity="center"/>
+
+    </FrameLayout>
+
+</RelativeLayout>
