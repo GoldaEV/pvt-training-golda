@@ -3,8 +3,4 @@
     <string name="left_text">Left text</string>
     <string name="right_text">Right text</string>
     <string name="changer" translatable="false">changer</string>
-    <string name="text1">TEXT1</string>
-    <string name="text2">TEXT2</string>
-    <string name="enter_passwd">Enter passwd</string>
-    <string name="enter_login">Enter login</string>
 </resources>
