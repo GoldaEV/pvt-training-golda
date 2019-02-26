@@ -10,7 +10,7 @@ import com.golda.app.pvttraining.dz1.Dz1Activity;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
-    Button dz1, cw1;
+    Button dz1;
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {
@@ -23,10 +23,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private void initGui() {
         dz1 = findViewById(R.id.dz1);
-        cw1 = findViewById(R.id.dz2);
-
         dz1.setOnClickListener(this);
-        cw1.setOnClickListener(this);
     }
 
     @Override
@@ -35,9 +32,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.dz1:
                 startActivity(new Intent(this, Dz1Activity.class));
                 break;
-            case R.id.dz2:
-
-//                startActivity(new Intent(this, CW2Activity.class));
         }
     }
 

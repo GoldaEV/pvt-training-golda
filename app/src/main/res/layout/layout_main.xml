@@ -23,10 +23,5 @@
         android:layout_height="wrap_content"
         android:text="dz1"/>
 
-    <Button
-        android:id="@+id/dz2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="dz2"/>
 
 </LinearLayout>
