@@ -2,10 +2,14 @@
 <resources>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#000000</color>
     <color name="colorBlue">#2196F3</color>
     <color name="red">#ED2939</color>
     <color name="white">#ffffff</color>
     <color name="green">#009246</color>
     <color name="blue">#003893</color>
+    <color name="text_white">#FFFFFF</color>
+    <color name="bg_edit_text">#3CFFFFFF</color>
+    <color name="button_create">#CAA74F</color>
+    <color name="login_button">#0197DB</color>
 </resources>

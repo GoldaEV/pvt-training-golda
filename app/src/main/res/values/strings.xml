@@ -5,9 +5,12 @@
     <string name="changer" translatable="false">changer</string>
     <string name="text1">TEXT1</string>
     <string name="text2">TEXT2</string>
-    <string name="enter_passwd">Enter passwd</string>
-    <string name="enter_login">Enter login</string>
+    <string name="enter_login">Username</string>
+    <string name="enter_passwd">Password</string>
     <string name="dz1">ДЗ1</string>
     <string name="ДЗ2">dz2</string>
     <string name="cw_2">CW 2</string>
+    <string name="forgot_you_username_password"><u>Forgot you username/password?</u></string>
+    <string name="login">Log in</string>
+    <string name="create_account">Create Account</string>
 </resources>
