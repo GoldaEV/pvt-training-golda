@@ -9,12 +9,10 @@ import android.widget.Button;
 import com.golda.app.pvttraining.cw2.Cw2LoginActivity;
 import com.golda.app.pvttraining.dz1.Dz1Activity;
 import com.golda.app.pvttraining.dz2.Dz2Activity;
+import com.golda.app.pvttraining.dz3.Dz3Activity;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
-    private Button dz1;
-    private Button dz2;
-    private Button cw2;
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {
@@ -25,13 +23,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     private void initGui() {
-        dz1 = findViewById(R.id.dz1);
-        dz2 = findViewById(R.id.dz2);
-        cw2 = findViewById(R.id.cw2);
+        findViewById(R.id.dz1).setOnClickListener(this);;
+        findViewById(R.id.dz2).setOnClickListener(this);;
+        findViewById(R.id.dz3).setOnClickListener(this);;
+        findViewById(R.id.cw2).setOnClickListener(this);;
 
-        dz1.setOnClickListener(this);
-        dz2.setOnClickListener(this);
-        cw2.setOnClickListener(this);
     }
 
     @Override
@@ -42,6 +38,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.dz2:
                 startActivity(new Intent(this, Dz2Activity.class));
+                break;
+            case R.id.dz3:
+                startActivity(new Intent(this, Dz3Activity.class));
                 break;
             case R.id.cw2:
                 startActivity(new Intent(this, Cw2LoginActivity.class));
