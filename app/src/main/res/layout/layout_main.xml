@@ -54,7 +54,7 @@
                 android:id="@+id/dz2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/ДЗ2"/>
+                android:text="@string/dz2"/>
         </LinearLayout>
 
     </LinearLayout>

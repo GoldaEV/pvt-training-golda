@@ -12,7 +12,9 @@ import com.golda.app.pvttraining.dz2.Dz2Activity;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
-    Button dz1, dz2, cw2;
+    private Button dz1;
+    private Button dz2;
+    private Button cw2;
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {
@@ -20,7 +22,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.layout_main);
 
         initGui();
-
     }
 
     private void initGui() {
