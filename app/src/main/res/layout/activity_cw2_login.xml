@@ -12,7 +12,6 @@
         android:scaleType="centerCrop"
         android:src="@mipmap/login_bg" />
 
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
@@ -30,14 +29,12 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="32dp"
-        android:background="@color/bg_edit_text"
+        style="@style/LoginEditText"
         android:drawableLeft="@mipmap/ic_login_name"
-        android:fontFamily="@font/monda_regular"
         android:hint="@string/enter_login"
         android:inputType="textEmailAddress"
         android:orientation="horizontal"
         android:paddingLeft="16dp"
-        android:textColorHint="@color/text_white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"/>
@@ -49,14 +46,11 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
-        android:background="@color/bg_edit_text"
         android:drawableLeft="@mipmap/ic_login_password"
-        android:fontFamily="@font/monda_regular"
         android:hint="@string/enter_passwd"
         android:inputType="textPassword"
-        android:orientation="horizontal"
         android:paddingLeft="16dp"
-        android:textColorHint="@color/text_white"
+        style="@style/LoginEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edUsername"/>
@@ -69,10 +63,8 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
         android:background="@color/login_button"
-        android:fontFamily="@font/monda_bold"
+        style="@style/LoginButton"
         android:text="@string/login"
-        android:textColor="@color/text_white"
-        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -98,10 +90,8 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="24dp"
         android:background="@color/button_create"
-        android:fontFamily="@font/monda_bold"
+        style="@style/LoginButton"
         android:text="@string/create_account"
-        android:textColor="@color/white"
-        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
