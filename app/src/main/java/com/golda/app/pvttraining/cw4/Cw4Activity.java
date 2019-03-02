@@ -12,5 +12,7 @@ public class Cw4Activity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_cw4);
 
+
+        Manager.getInstance().setCw4Activity(this);
     }
 }
