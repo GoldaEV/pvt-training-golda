@@ -1,6 +1,7 @@
 package com.golda.app.pvttraining.dz4;
 
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -15,6 +16,7 @@ public class Dz4Activity extends Activity {
     private ImageSwitcher imageSwitcher;
     private int animationCounter = 1;
     private Handler imageSwitcherHandler;
+    private int[] mImageIds = { R.drawable.sova_anmation_1, R.drawable.sova_anmation_2, R.drawable.sova_anmation_3};
 
 
     @Override
@@ -23,6 +25,8 @@ public class Dz4Activity extends Activity {
         setContentView(R.layout.layout_dz4);
 
         imageSwitcher = findViewById(R.id.slide_trans_imageswitcher);
+        Drawable drawable = getResources().getDrawable(R.drawable.sova_anmation_1);
+        imageSwitcher.setImageDrawable(drawable);
 
 //        Animation in  = AnimationUtils.loadAnimation(this, R.anim.left_to_right_in);
 //        Animation out = AnimationUtils.loadAnimation(this, R.anim.left_to_right_out);
@@ -30,27 +34,27 @@ public class Dz4Activity extends Activity {
 //        imageSwitcher.setInAnimation(in);
 //        imageSwitcher.setOutAnimation(out);
 
-        imageSwitcherHandler = new Handler(Looper.getMainLooper());
-        imageSwitcherHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                switch (animationCounter++) {
-                    case 1:
-                        imageSwitcher.setImageResource(R.drawable.sova_anmation_1);
-                        break;
-                    case 2:
-                        imageSwitcher.setImageResource(R.drawable.sova_anmation_2);
-                        break;
-                    case 3:
-                        imageSwitcher.setImageResource(R.drawable.sova_anmation_3);
-                        break;
-                }
-                animationCounter %= 4;
-                if(animationCounter == 0 ) animationCounter = 1;
-
-                imageSwitcherHandler.postDelayed(this, 3000);
-            }
-        });
+//        imageSwitcherHandler = new Handler(Looper.getMainLooper());
+//        imageSwitcherHandler.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                switch (animationCounter++) {
+//                    case 1:
+//                        imageSwitcher.setImageResource(mImageIds[0]);
+//                        break;
+//                    case 2:
+//                        imageSwitcher.setImageResource(mImageIds[1]);
+//                        break;
+//                    case 3:
+//                        imageSwitcher.setImageResource(mImageIds[2]);
+//                        break;
+//                }
+//                animationCounter %= 4;
+//                if(animationCounter == 0 ) animationCounter = 1;
+//
+//                imageSwitcherHandler.postDelayed(this, 3000);
+//            }
+//        });
 
     }
 
