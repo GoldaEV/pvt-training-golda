@@ -1,62 +1,84 @@
 package com.golda.app.pvttraining.dz4;
 
 import android.app.Activity;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.Nullable;
+import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageSwitcher;
-
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ViewSwitcher;
 import com.golda.app.pvttraining.R;
 
-public class Dz4Activity extends Activity {
-    private ImageSwitcher imageSwitcher;
-    private int animationCounter = 1;
-    private Handler imageSwitcherHandler;
-    private int[] mImageIds = { R.drawable.sova_anmation_1, R.drawable.sova_anmation_2, R.drawable.sova_anmation_3};
+import java.util.Random;
 
+public class Dz4Activity extends Activity implements ViewSwitcher.ViewFactory {
+    private static final int minDelay = 3000;
+    private static final int maxDelay = 7000;
+    private static final int animDelay = 300;
+
+    private ImageSwitcher mImageSwitcher;
+    private int animationCounter = 0;
+    private Handler imageSwitcherHandler;
+    private int[] mImageIds = { R.drawable.sv1, R.drawable.sv2, R.drawable.sv3};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_dz4);
+            setContentView(R.layout.layout_dz4);
 
-        imageSwitcher = findViewById(R.id.slide_trans_imageswitcher);
-        Drawable drawable = getResources().getDrawable(R.drawable.sova_anmation_1);
-        imageSwitcher.setImageDrawable(drawable);
+            mImageSwitcher = findViewById(R.id.imageSwitcher);
+            mImageSwitcher.setFactory(this);
 
-//        Animation in  = AnimationUtils.loadAnimation(this, R.anim.left_to_right_in);
-//        Animation out = AnimationUtils.loadAnimation(this, R.anim.left_to_right_out);
-//
-//        imageSwitcher.setInAnimation(in);
-//        imageSwitcher.setOutAnimation(out);
+            Animation outAnimation = new AlphaAnimation(1, 0);
+            outAnimation.setDuration(150);
+            mImageSwitcher.setOutAnimation(outAnimation);
+            mImageSwitcher.setImageResource(mImageIds[0]);
 
-//        imageSwitcherHandler = new Handler(Looper.getMainLooper());
-//        imageSwitcherHandler.post(new Runnable() {
-//            @Override
-//            public void run() {
-//                switch (animationCounter++) {
-//                    case 1:
-//                        imageSwitcher.setImageResource(mImageIds[0]);
-//                        break;
-//                    case 2:
-//                        imageSwitcher.setImageResource(mImageIds[1]);
-//                        break;
-//                    case 3:
-//                        imageSwitcher.setImageResource(mImageIds[2]);
-//                        break;
-//                }
-//                animationCounter %= 4;
-//                if(animationCounter == 0 ) animationCounter = 1;
-//
-//                imageSwitcherHandler.postDelayed(this, 3000);
-//            }
-//        });
+            imageSwitcherHandler = new Handler(Looper.getMainLooper());
+            imageSwitcherHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    switch (animationCounter++) {
+                        case 0:
+                            mImageSwitcher.setImageResource(mImageIds[1]);
+                            break;
+                        case 1:
+                            mImageSwitcher.setImageResource(mImageIds[2]);
+                            break;
+                        case 2:
+                            mImageSwitcher.setImageResource(mImageIds[1]);
+                            break;
+                        case 3:
+                            mImageSwitcher.setImageResource(mImageIds[0]);
+                            break;
+                    }
+                    if (animationCounter < 4) {
+                        imageSwitcherHandler.postDelayed(this, animDelay);
+                    } else {
+                        animationCounter = 0;
+                        imageSwitcherHandler.postDelayed(this, getRandomNumberInRange(minDelay, maxDelay));
+                    }
+                }
+            });
 
+        }
+
+    private static int getRandomNumberInRange(int min, int max) {
+        return new Random().nextInt((max - min) + 1) + min;
     }
 
-
+        @Override
+        public View makeView() {
+            ImageView imageView = new ImageView(this);
+            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            imageView.setLayoutParams(new
+                    ImageSwitcher.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+            return imageView;
+        }
 }
