@@ -71,6 +71,7 @@ public class Dz4Activity extends Activity implements ViewSwitcher.ViewFactory {
     private static int getRandomNumberInRange(int min, int max) {
         return new Random().nextInt((max - min) + 1) + min;
     }
+
         @Override
         public View makeView() {
             ImageView imageView = new ImageView(this);
