@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".cw5.Cw5Activity"></activity>
+        <activity android:name=".cw5.Cw5Activity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +26,9 @@
         <activity android:name=".dz2.Dz2Activity" />
         <activity android:name=".dz3.Dz3Activity" />
         <activity android:name=".cw2.Cw2LoginActivity" />
+
+        <service android:name=".cw5.MyService"/>
+        <service android:name=".cw5.MyIntentService"/>
 
     <receiver android:name=".WifiReceiver">
         <intent-filter>
