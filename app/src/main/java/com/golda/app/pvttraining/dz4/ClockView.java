@@ -54,11 +54,11 @@ public class ClockView extends View {
             initClock();
         }
         drawCircle(canvas);
-        invalidate();
         drawNumeral(canvas);
         drawHands(canvas);
         drawLine(canvas);
         postInvalidateDelayed(500);
+        invalidate();
     }
 
     private void drawCircle(Canvas canvas) {
