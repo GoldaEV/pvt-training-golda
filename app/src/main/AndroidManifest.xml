@@ -19,7 +19,10 @@
         </activity>
         <activity android:name="com.golda.app.pvttraining.dz1.Dz1Activity" />
         <activity android:name="com.golda.app.pvttraining.dz2.Dz2Activity" />
+        <activity android:name="com.golda.app.pvttraining.dz5.Dz5Activity" />
         <activity android:name="com.golda.app.pvttraining.cw2.Cw2LoginActivity"/>
+
+        <service android:name="com.golda.app.pvttraining.dz5.MyService" />
     </application>
 
 </manifest>
