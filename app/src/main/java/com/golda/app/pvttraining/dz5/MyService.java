@@ -7,7 +7,8 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 
 public class MyService extends Service {
-    MyBinder myBinder = new MyBinder();
+    private MyBinder myBinder = new MyBinder();
+    public static final String MY_ACTION = "com.golda.app.pvttraining.dz5.MY_ACTION";
 
     private static final String TAG = "MyService";
 

@@ -3,11 +3,13 @@ package com.golda.app.pvttraining.dz5;
 import android.app.Activity;
 import android.app.Service;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.View;
 import android.widget.TextView;
 
@@ -32,6 +34,8 @@ public class Dz5Activity extends Activity implements View.OnClickListener {
     @Override
     protected void onStart() {
         super.onStart();
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(serviceReceiver, Context.);
 
         Intent intent = new Intent(this, MyService.class);
         bindService(intent, serviceConnection, Service.BIND_AUTO_CREATE);
