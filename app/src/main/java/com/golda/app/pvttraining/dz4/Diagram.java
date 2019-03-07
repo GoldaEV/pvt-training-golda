@@ -39,7 +39,6 @@ public class Diagram extends View {
             initDiagram();
         }
         drawDiagram(canvas);
-
     }
 
     private void initDiagram() {
@@ -72,20 +71,28 @@ public class Diagram extends View {
             getRandomColor();
             float angle = 360 / sumArray * number;
             canvas.drawArc(rectf, startAngle, angle, true, paint);
-            float angle1 = startAngle + angle / 2;
-            drawText(canvas, angle1, number );
+            drawText(canvas, startAngle + angle / 2, number );
+            drawMarker(canvas, startAngle + angle / 2);
             startAngle += angle;
         }
-
     }
 
     private void drawText(Canvas canvas, double angle, int number) {
+        double radians = Math.toRadians(angle-7);
         paint.setTextSize(fontSize);
         String tmp = String.valueOf(number);
         paint.getTextBounds(tmp, 0, tmp.length(), rect);
-        int x = (int) (width / 2 + Math.cos(angle) * (width/2 - padding/2) - rect.width() / 2);
-        int y = (int) (height / 2 + Math.sin(angle) * (height/2 - padding/2) + rect.height() / 2);
+        int x = (int) (width / 2 + Math.cos(radians) * (width/2 - padding/2) - rect.width() / 2);
+        int y = (int) (height / 2 + Math.sin(radians) * (height/2 - padding/2) + rect.height() / 2);
         canvas.drawText(tmp, x, y, paint);
+    }
 
+    private void drawMarker(Canvas canvas, double angle) {
+        paint.setStrokeWidth(5);
+        double radians = Math.toRadians(angle);
+        int x = (int) (width / 2 + Math.cos(radians) * (width/2 - padding/2));
+        int y = (int) (height / 2 + Math.sin(radians) * (height/2 - padding/2));
+        canvas.drawLine(width/2, height / 2, x, y, paint);
+        canvas.drawCircle(x, y, 10, paint);
     }
 }
