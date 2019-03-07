@@ -9,6 +9,7 @@ import android.widget.Button;
 import com.golda.app.pvttraining.cw2.Cw2LoginActivity;
 import com.golda.app.pvttraining.dz1.Dz1Activity;
 import com.golda.app.pvttraining.dz2.Dz2Activity;
+import com.golda.app.pvttraining.dz5.Dz5Activity;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
@@ -50,7 +51,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 startActivity(new Intent(this, Cw2LoginActivity.class));
                 break;
             case R.id.dz5:
-                startActivity(new Intent(this, Cw2LoginActivity.class));
+                startActivity(new Intent(this, Dz5Activity.class));
                 break;
 
         }

@@ -2,9 +2,11 @@ package com.golda.app.pvttraining.dz5;
 
 import android.app.Activity;
 import android.app.Service;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -19,6 +21,7 @@ public class Dz5Activity extends Activity implements View.OnClickListener {
     private TextView textView;
     private MyService myService;
     private boolean bound;
+    private BroadcastReceiver broadcastReceiver;
 
 
     @Override
@@ -34,17 +37,25 @@ public class Dz5Activity extends Activity implements View.OnClickListener {
     @Override
     protected void onStart() {
         super.onStart();
-
-        LocalBroadcastManager.getInstance(this).registerReceiver(serviceReceiver, Context.);
-
         Intent intent = new Intent(this, MyService.class);
         bindService(intent, serviceConnection, Service.BIND_AUTO_CREATE);
+
+        IntentFilter intentFilter = new IntentFilter(MyService.MY_ACTION);
+        broadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                textView.setText("Button Clecked");
+            }
+        };
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, intentFilter);
+
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
         unbindService(serviceConnection);
     }
 
