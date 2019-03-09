@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import com.golda.app.pvttraining.R;
 
@@ -37,6 +38,13 @@ public class Cw6Activity extends Activity {
 
         MyListAdapter myListAdapter = new MyListAdapter();
         myListAdapter.setList(list);
+
+        myListAdapter.setOnItemClickListener(new MyListAdapter.OnItemClickListener() {
+            @Override
+            public void onClick(Student item, int position) {
+                Toast.makeText(Cw6Activity.this, "Name: " + item.getName(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         recyclerView.setAdapter(myListAdapter);
     }

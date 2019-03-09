@@ -13,6 +13,12 @@ import java.util.List;
 
 public class MyListAdapter extends RecyclerView.Adapter<MyListViewHolder> {
 
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    private OnItemClickListener onItemClickListener;
+
     public void setList(List<Student> list) {
         this.list = list;
         notifyDataSetChanged();
@@ -25,7 +31,19 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListViewHolder> {
     @Override
     public MyListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_my_list, parent, false);
-        return new MyListViewHolder(view);
+
+        final MyListViewHolder holder = new MyListViewHolder(view);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position = holder.getAdapterPosition();
+                if (onItemClickListener != null) {
+                    onItemClickListener.onClick(list.get(position), position);
+                }
+            }
+        });
+
+        return holder;
     }
 
     @Override
@@ -37,4 +55,10 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListViewHolder> {
     public int getItemCount() {
         return list.size();
     }
+
+    public interface OnItemClickListener {
+        void onClick(Student item, int position);
+    }
+
+
 }
