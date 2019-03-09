@@ -1,6 +1,7 @@
 package com.golda.app.pvttraining.cw6;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,11 +14,16 @@ import java.util.ArrayList;
 
 public class Cw6Activity extends Activity {
     private RecyclerView recyclerView;
+    private SharedPreferences sharedPreferences;
+    private static String SHARED_KEY = "SHARED_KEY";
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_cw6);
+
+        sharedPreferences = getSharedPreferences("aaa", MODE_PRIVATE);
 
         recyclerView = findViewById(R.id.recyclerView);
 
@@ -47,5 +53,22 @@ public class Cw6Activity extends Activity {
         });
 
         recyclerView.setAdapter(myListAdapter);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        sharedPreferences
+                .edit()
+                .putLong(SHARED_KEY, System.currentTimeMillis())
+                .apply();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        long time = sharedPreferences.getLong(SHARED_KEY, 0);
+        Toast.makeText(this, String.valueOf(time), Toast.LENGTH_SHORT).show();
     }
 }

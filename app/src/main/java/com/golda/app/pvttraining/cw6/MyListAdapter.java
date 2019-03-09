@@ -56,9 +56,15 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListViewHolder> {
         return list.size();
     }
 
+    // SOLID
+
     public interface OnItemClickListener {
         void onClick(Student item, int position);
     }
 
+
+    public interface OnLongItemClickListener {
+        void onLongClick(Student item, int position);
+    }
 
 }
