@@ -22,6 +22,7 @@
         <activity android:name="com.golda.app.pvttraining.dz1.Dz1Activity" />
         <activity android:name="com.golda.app.pvttraining.dz2.Dz2Activity" />
         <activity android:name="com.golda.app.pvttraining.dz3.Dz3Activity" />
+        <activity android:name="com.golda.app.pvttraining.dz4.Dz4Activity" />
         <activity android:name="com.golda.app.pvttraining.cw2.Cw2LoginActivity"/>
     </application>
 
