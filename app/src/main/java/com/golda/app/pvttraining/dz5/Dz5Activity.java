@@ -17,12 +17,11 @@ import android.widget.TextView;
 
 import com.golda.app.pvttraining.R;
 
-public class Dz5Activity extends Activity implements View.OnClickListener {
+public class Dz5Activity extends Activity {
     private TextView textView;
     private MyService myService;
     private boolean bound;
     private BroadcastReceiver broadcastReceiver;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,8 +29,15 @@ public class Dz5Activity extends Activity implements View.OnClickListener {
         setContentView(R.layout.layout_dz5);
 
         textView = findViewById(R.id.textView);
-        findViewById(R.id.start).setOnClickListener(this);
-        findViewById(R.id.stop).setOnClickListener(this);
+        findViewById(R.id.click).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (bound) {
+                    myService.getWifiState();
+                }
+
+            }
+        });
     }
 
     @Override
@@ -44,7 +50,11 @@ public class Dz5Activity extends Activity implements View.OnClickListener {
         broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                textView.setText("Button Clecked");
+                if (intent != null) {
+                    boolean booleanExtra = intent.getBooleanExtra(MyService.EXTRA_KEY, false);
+                    textView.setText("WiFi state: " + booleanExtra);
+
+                }
             }
         };
 
@@ -59,23 +69,6 @@ public class Dz5Activity extends Activity implements View.OnClickListener {
         unbindService(serviceConnection);
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.start:
-                if (bound) {
-                    myService.bindWiFiMessage();
-                }
-
-                break;
-            case R.id.stop:
-                if (bound) {
-                    myService.unbindWiFiMessage();
-                }
-                break;
-
-        }
-    }
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override

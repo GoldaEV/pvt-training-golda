@@ -5,6 +5,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.ServiceConnection;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.wifi.WifiManager;
 import android.os.Binder;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
@@ -16,7 +20,9 @@ public class MyService extends Service {
     public static final String MY_ACTION = "com.golda.app.pvttraining.dz5.MY_ACTION";
     public static final String EXTRA_KEY = "EXTRA_KEY";
 
+
     private static final String TAG = "MyService";
+    private boolean mWifiConnected;
 
     @Override
     public void onCreate() {
@@ -28,7 +34,14 @@ public class MyService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         Log.d(TAG, "onBind");
+        bindWiFiMessage();
         return myBinder;
+    }
+
+    @Override
+    public void unbindService(ServiceConnection conn) {
+        super.unbindService(conn);
+        unbindWiFiMessage();
     }
 
     class MyBinder extends Binder{
@@ -40,21 +53,36 @@ public class MyService extends Service {
 
     public void bindWiFiMessage() {
         Log.d(TAG, "bindWiFiMessage");
-        IntentFilter filters = new IntentFilter(Intent.ACTION_TIME_TICK);
-        registerReceiver(timeReceiver, filters);
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(WifiManager.SUPPLICANT_CONNECTION_CHANGE_ACTION);
+        registerReceiver(broadcastReceiver, intentFilter);
     }
 
     public void unbindWiFiMessage() {
         Log.d(TAG, "unbindWiFiMessage");
-        unregisterReceiver(timeReceiver);
+        unregisterReceiver(broadcastReceiver);
     }
 
-    private BroadcastReceiver timeReceiver = new BroadcastReceiver() {
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Intent intMes = new Intent();
-            intent.putExtra(EXTRA_KEY, "Time Changed");
-            LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intMes);
+            final String action = intent.getAction();
+            if (action.equals(WifiManager.SUPPLICANT_CONNECTION_CHANGE_ACTION)) {
+                getWifiState();
+            }
         }
     };
+
+    public void getWifiState() {
+        ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        mWifiConnected = mWifi.isConnected();
+        sendWifiState();
+    }
+
+    private void sendWifiState() {
+        Intent intMes = new Intent(MY_ACTION);
+        intMes.putExtra(EXTRA_KEY, mWifiConnected);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(intMes);
+    }
 }
