@@ -10,7 +10,6 @@ import com.golda.app.pvttraining.dz1.Dz1Activity;
 import com.golda.app.pvttraining.dz2.Dz2Activity;
 import com.golda.app.pvttraining.dz3.Dz3Activity;
 import com.golda.app.pvttraining.dz4.Dz4Activity;
-import com.squareup.leakcanary.LeakCanary;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
@@ -20,10 +19,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_main);
 
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            return;
-        }
-//        LeakCanary.install(this);
 
         initGui();
     }
