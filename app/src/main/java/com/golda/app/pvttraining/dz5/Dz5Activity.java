@@ -35,7 +35,6 @@ public class Dz5Activity extends Activity {
                 if (bound) {
                     myService.getWifiState();
                 }
-
             }
         });
     }

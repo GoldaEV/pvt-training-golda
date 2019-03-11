@@ -60,6 +60,7 @@ public class MyService extends Service {
 
     public void unbindWiFiMessage() {
         Log.d(TAG, "unbindWiFiMessage");
+
         unregisterReceiver(broadcastReceiver);
     }
 
@@ -68,7 +69,11 @@ public class MyService extends Service {
         public void onReceive(Context context, Intent intent) {
             final String action = intent.getAction();
             if (action.equals(WifiManager.SUPPLICANT_CONNECTION_CHANGE_ACTION)) {
-                getWifiState();
+                if (intent.getBooleanExtra(WifiManager.EXTRA_SUPPLICANT_CONNECTED, false)) {
+                    sendWifiState(true);
+                } else {
+                    sendWifiState(false);
+                }
             }
         }
     };
@@ -80,9 +85,13 @@ public class MyService extends Service {
         sendWifiState();
     }
 
-    private void sendWifiState() {
+    public void sendWifiState() {
+        sendWifiState(mWifiConnected);
+    }
+
+    public void sendWifiState(boolean state) {
         Intent intMes = new Intent(MY_ACTION);
-        intMes.putExtra(EXTRA_KEY, mWifiConnected);
+        intMes.putExtra(EXTRA_KEY, state);
         LocalBroadcastManager.getInstance(this).sendBroadcast(intMes);
     }
 }
