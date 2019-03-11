@@ -10,7 +10,7 @@ import com.golda.app.pvttraining.dz1.Dz1Activity;
 import com.golda.app.pvttraining.dz2.Dz2Activity;
 import com.golda.app.pvttraining.dz3.Dz3Activity;
 import com.golda.app.pvttraining.dz4.Dz4Activity;
-import com.squareup.leakcanary.LeakCanary;
+import com.golda.app.pvttraining.dz5.Dz5Activity;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
@@ -20,10 +20,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_main);
 
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            return;
-        }
-//        LeakCanary.install(this);
 
         initGui();
     }
@@ -33,6 +29,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         findViewById(R.id.dz2).setOnClickListener(this);;
         findViewById(R.id.dz3).setOnClickListener(this);;
         findViewById(R.id.dz4).setOnClickListener(this);;
+        findViewById(R.id.dz5).setOnClickListener(this);;
         findViewById(R.id.cw2).setOnClickListener(this);;
 
     }
@@ -55,6 +52,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.dz4:
                 startActivity(new Intent(this, Dz4Activity.class));
                 overridePendingTransition(R.anim.anim_1, R.anim.anim_2);
+                break;
+            case R.id.dz5:
+                startActivity(new Intent(this, Dz5Activity.class));
                 break;
         }
     }

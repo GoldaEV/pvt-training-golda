@@ -13,4 +13,5 @@
     <string name="cw_2">CW 2</string>
     <string name="download">Download</string>
     <string name="temp_url">https://square.github.io/picasso/static/sample.png</string>
+    <string name="get_state">Get state</string>
 </resources>

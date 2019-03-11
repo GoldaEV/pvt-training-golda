@@ -65,6 +65,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="DZ4"/>
+            <Button
+                android:id="@+id/dz5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DZ5"/>
         </LinearLayout>
 
     </LinearLayout>
