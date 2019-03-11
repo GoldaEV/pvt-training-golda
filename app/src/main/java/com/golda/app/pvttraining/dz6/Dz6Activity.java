@@ -3,6 +3,7 @@ package com.golda.app.pvttraining.dz6;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.golda.app.pvttraining.R;
@@ -21,7 +22,7 @@ public class Dz6Activity extends Activity {
         setContentView(R.layout.layout_dz6);
         persons = DataList.getInstance().getPersonList();
         recyclerView = findViewById(R.id.recycleListView);
-
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         MyListAdapter myListAdapter = new MyListAdapter();
         myListAdapter.setList(persons);
         recyclerView.setAdapter(myListAdapter);
