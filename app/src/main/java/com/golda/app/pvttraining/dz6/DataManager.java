@@ -2,6 +2,7 @@ package com.golda.app.pvttraining.dz6;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class DataManager {
     private static final DataManager ourInstance = new DataManager();
@@ -91,6 +92,13 @@ public class DataManager {
     public void removeItem(Person item) {
         personList.remove(item);
         if (changeListener !=null) changeListener.onChanged();
+    }
+
+    public void createPerson(String sName, String sSurname, int sAge, boolean sDegree) {
+        int newID = new Random().nextInt();
+        Person person = new Person(newID, sName, sSurname, sAge, sDegree);
+        personList.add(person);
+        if (changeListener != null) changeListener.onChanged();
     }
 
     public interface ChangeListener {

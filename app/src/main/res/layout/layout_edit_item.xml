@@ -6,9 +6,10 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Person"
+        android:text="@string/edit_person"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/editTextName"
         app:layout_constraintEnd_toEndOf="parent"

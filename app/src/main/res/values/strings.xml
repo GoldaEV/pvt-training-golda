@@ -16,5 +16,9 @@
     <string name="get_state">Get state</string>
     <string name="save">Save</string>
     <string name="cancel">cancel</string>
-    <string name="person_list">Person list</string>
+    <string name="person_list">Persons list</string>
+    <string name="remove">Remove</string>
+    <string name="new_person">New person</string>
+    <string name="create">Create</string>
+    <string name="edit_person">Edit person</string>
 </resources>
