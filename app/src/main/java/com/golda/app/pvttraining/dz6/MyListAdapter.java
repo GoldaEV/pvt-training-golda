@@ -13,6 +13,10 @@ import java.util.List;
 
 class MyListAdapter extends RecyclerView.Adapter<MyListViewHolder> {
     private List<Person> list = new ArrayList<>();
+    private OnItemClickListener onItemClickListener;
+    private OnItemLongClickListener onItemLongClickListener;
+
+
 
     @NonNull
     @Override
@@ -20,15 +24,27 @@ class MyListAdapter extends RecyclerView.Adapter<MyListViewHolder> {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_my_list, parent, false);
 
         final MyListViewHolder holder = new MyListViewHolder(view);
-//        view.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                int position = holder.getAdapterPosition();
-////                if (onItemClickListener != null) {
-////                    onItemClickListener.onClick(list.get(position), position);
-////                }
-//            }
-//        });
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position = holder.getAdapterPosition();
+                if (onItemClickListener != null) {
+                    onItemClickListener.onClick(list.get(position));
+                }
+            }
+        });
+
+        view.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                int position = holder.getAdapterPosition();
+                if (onItemLongClickListener != null) {
+                    onItemLongClickListener.onLongClick(list.get(position));
+                }
+                return true;
+            }
+        });
 
         return holder;
     }
@@ -46,5 +62,22 @@ class MyListAdapter extends RecyclerView.Adapter<MyListViewHolder> {
     public void setList(List<Person> list) {
         this.list = list;
         notifyDataSetChanged();
+    }
+
+    public interface OnItemLongClickListener {
+        void onLongClick(Person item);
+    }
+
+    public interface OnItemClickListener {
+
+        void onClick(Person item);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener) {
+        this.onItemLongClickListener = onItemLongClickListener;
     }
 }

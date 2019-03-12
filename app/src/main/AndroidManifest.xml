@@ -26,6 +26,7 @@
         <activity android:name="com.golda.app.pvttraining.dz4.Dz4Activity" />
         <activity android:name="com.golda.app.pvttraining.dz5.Dz5Activity" />
         <activity android:name="com.golda.app.pvttraining.dz6.Dz6Activity" />
+        <activity android:name="com.golda.app.pvttraining.dz6.EditItemActivity" />
         <activity android:name="com.golda.app.pvttraining.cw2.Cw2LoginActivity"/>
 
         <service android:name="com.golda.app.pvttraining.dz5.MyService" />

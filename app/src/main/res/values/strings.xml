@@ -14,4 +14,7 @@
     <string name="download">Download</string>
     <string name="temp_url">https://square.github.io/picasso/static/sample.png</string>
     <string name="get_state">Get state</string>
+    <string name="save">Save</string>
+    <string name="cancel">cancel</string>
+    <string name="person_list">Person list</string>
 </resources>

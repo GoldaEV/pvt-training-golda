@@ -3,7 +3,6 @@ package com.golda.app.pvttraining.dz6;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.google.gson.Gson;
 
@@ -17,16 +16,14 @@ import java.net.URL;
 
 public class DataLoader {
 
-    private DataList dataList = DataList.getInstance();
+    private DataManager dataManager = DataManager.getInstance();
     private ProgressDialog pd;
     private String json;
     private Context context;
-    private String URL_STRING;
 
-    public void loadData(Context _context, String url) {
-        context = _context;
-        URL_STRING = url;
-        new JsonTask().execute(URL_STRING);
+    public void loadData(Context context, String url) {
+        this.context = context;
+        new JsonTask().execute(url);
     }
 
 
@@ -58,8 +55,6 @@ public class DataLoader {
 
                 while ((line = reader.readLine()) != null) {
                     buffer.append(line+"\n");
-                    Log.d("Response: ", "> " + line);   //here u ll get whole response...... :-)
-
                 }
 
                 return buffer.toString();
@@ -98,6 +93,6 @@ public class DataLoader {
         Gson gson = new Gson();
         Students students = gson.fromJson(json, Students.class);
 
-        dataList.setPersons(students.getPeople());
+        dataManager.setPersons(students.getPeople());
     }
 }

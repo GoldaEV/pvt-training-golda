@@ -27,7 +27,7 @@ public class MyListViewHolder extends RecyclerView.ViewHolder {
         }
 
         if (item.getSurname() != null) {
-            surname.setText(item.getName());
+            surname.setText(item.getSurname());
         } else {
             surname.setText("");
         }
