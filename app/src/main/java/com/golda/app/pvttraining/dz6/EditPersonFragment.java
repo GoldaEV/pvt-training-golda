@@ -50,18 +50,18 @@ public class EditPersonFragment extends Fragment {
         return view;
     }
 
+
     @Override
     public void onResume() {
         super.onResume();
-        if (editID == -1) {
-            label.setText(R.string.new_person);
-            save.setText(R.string.create);
-        } else {
-            name.setText(dataManager.getName(editID));
-            surname.setText(dataManager.getSurname(editID));
-            age.setText(String.valueOf(dataManager.getAge(editID)));
-            degree.setChecked(dataManager.getIsDegree(editID));
-        }
+
+    }
+
+    private void displayPerson(Person person) {
+        name.setText(person.getName());
+        surname.setText(person.getSurname());
+        age.setText(String.valueOf(person.getAge()));
+        degree.setChecked(person.getIsDegree());
     }
 
     private void savePerson() {
@@ -93,10 +93,23 @@ public class EditPersonFragment extends Fragment {
 //        finish();
     }
 
+
     private View.OnClickListener clickCancel =new View.OnClickListener() {
         @Override
         public void onClick(View view) {
 //            finish();
         }
     };
+
+
+    public void displayDetails(int id) {
+        if (editID == -1) {
+            label.setText(R.string.new_person);
+            save.setText(R.string.create);
+        } else {
+            displayPerson(dataManager.getPersonById(id));
+        }
+    }
+
 }
+

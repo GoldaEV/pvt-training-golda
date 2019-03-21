@@ -101,6 +101,16 @@ public class DataManager {
         if (changeListener != null) changeListener.onChanged();
     }
 
+    public Person getPersonById(int id) {
+        Person person = new Person();
+        for (Person per : personList) {
+            if (per.getId() == id) {
+                person = per;
+            }
+        }
+        return person;
+    }
+
     public interface ChangeListener {
         void onChanged();
     }

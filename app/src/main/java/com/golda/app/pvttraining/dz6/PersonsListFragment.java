@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 
 import com.golda.app.pvttraining.R;
 
-public class PersonsLiatFragment extends Fragment {
+public class PersonsListFragment extends Fragment {
 
     private static final String URL_STRING = "http://kiparo.ru/t/test.json";
     private DataManager dataManager;
@@ -25,8 +25,12 @@ public class PersonsLiatFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_peson_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_person_list, container, false);
+        return view;
+    }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         dataManager = DataManager.getInstance();
         dataManager.setChangeListener(new DataManager.ChangeListener() {
             @Override
@@ -38,13 +42,12 @@ public class PersonsLiatFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         myListAdapter = new MyListAdapter();
         myListAdapter.setList(dataManager.getPersonList());
-        myListAdapter.setOnItemClickListener(onItemClickListener);
+
         myListAdapter.setOnItemLongClickListener(onItemLongClickListener);
         recyclerView.setAdapter(myListAdapter);
 
         view.findViewById(R.id.buttonAdd).setOnClickListener(clickAddItem);
 
-        return view;
     }
 
     @Override
@@ -54,14 +57,7 @@ public class PersonsLiatFragment extends Fragment {
         if (dataManager.isListEmpty()) new DataLoader().loadData(getContext(), URL_STRING);
     }
 
-    private MyListAdapter.OnItemClickListener onItemClickListener = new MyListAdapter.OnItemClickListener() {
-        @Override
-        public void onClick(Person item) {
-            Intent intent = new Intent(getContext(), EditItemActivity.class);
-            intent.putExtra(EditPersonFragment.EXTRA_EDIT_ITEM, item.getId());
-            startActivity(intent);
-        }
-    };
+
 
     private MyListAdapter.OnItemLongClickListener onItemLongClickListener = new MyListAdapter.OnItemLongClickListener() {
         @Override

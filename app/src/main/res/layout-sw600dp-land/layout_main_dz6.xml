@@ -9,11 +9,11 @@
 
     <fragment
         android:id="@+id/fragmentPersonList"
-        android:name="com.golda.app.pvttraining.dz6.PersonsLiatFragment"
+        android:name="com.golda.app.pvttraining.dz6.PersonsListFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        tools:layout="@layout/fragment_peson_list"/>
+        tools:layout="@layout/fragment_person_list"/>
 
     <fragment
         android:id="@+id/fragmentEditPerson"
