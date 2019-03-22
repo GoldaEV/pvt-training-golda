@@ -16,8 +16,6 @@ class MyListAdapter extends RecyclerView.Adapter<MyListViewHolder> {
     private OnItemClickListener onItemClickListener;
     private OnItemLongClickListener onItemLongClickListener;
 
-
-
     @NonNull
     @Override
     public MyListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -64,17 +62,16 @@ class MyListAdapter extends RecyclerView.Adapter<MyListViewHolder> {
         notifyDataSetChanged();
     }
 
-    public interface OnItemLongClickListener {
-        void onLongClick(Person item);
-    }
-
     public interface OnItemClickListener {
-
         void onClick(Person item);
     }
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
+    }
+
+    public interface OnItemLongClickListener {
+        void onLongClick(Person item);
     }
 
     public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener) {
