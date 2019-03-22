@@ -1,8 +1,9 @@
 package com.golda.app.pvttraining.dz6;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -21,7 +22,7 @@ public class PersonsListFragment extends Fragment {
     private DataManager dataManager;
     private RecyclerView recyclerView;
     private MyListAdapter myListAdapter;
-
+    private Activity activity;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -42,11 +43,11 @@ public class PersonsListFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         myListAdapter = new MyListAdapter();
         myListAdapter.setList(dataManager.getPersonList());
-
+        myListAdapter.setOnItemClickListener(onItemClickListener);
         myListAdapter.setOnItemLongClickListener(onItemLongClickListener);
         recyclerView.setAdapter(myListAdapter);
 
-        view.findViewById(R.id.buttonAdd).setOnClickListener(clickAddItem);
+        view.findViewById(R.id.buttonAdd).setOnClickListener(onClickAdd);
 
     }
 
@@ -57,6 +58,22 @@ public class PersonsListFragment extends Fragment {
         if (dataManager.isListEmpty()) new DataLoader().loadData(getContext(), URL_STRING);
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        activity = (Activity) context;
+    }
+
+
+    private MyListAdapter.OnItemClickListener onItemClickListener = new MyListAdapter.OnItemClickListener() {
+        @Override
+        public void onClick(Person item) {
+            try {
+                ((EditableConnector) activity).editPerson(item.getId());
+            } catch (ClassCastException e) {
+            }
+        }
+    };
 
 
     private MyListAdapter.OnItemLongClickListener onItemLongClickListener = new MyListAdapter.OnItemLongClickListener() {
@@ -80,12 +97,18 @@ public class PersonsListFragment extends Fragment {
         }
     };
 
-    private View.OnClickListener clickAddItem = new View.OnClickListener() {
+    private View.OnClickListener onClickAdd = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Intent intent = new Intent(getContext(), EditItemActivity.class);
-            intent.putExtra(EditPersonFragment.EXTRA_EDIT_ITEM, -1);
-            startActivity(intent);
+            try {
+                ((EditableConnector) activity).editPerson(-1);
+            } catch (ClassCastException e) {
+            }
         }
     };
+
+    public interface EditableConnector {
+
+        void editPerson(int id);
+    }
 }

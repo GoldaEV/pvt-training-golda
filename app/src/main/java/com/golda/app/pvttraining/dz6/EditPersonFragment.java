@@ -1,5 +1,7 @@
 package com.golda.app.pvttraining.dz6;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,12 +13,11 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.golda.app.pvttraining.R;
 
 public class EditPersonFragment extends Fragment {
-
-    public static final String EXTRA_EDIT_ITEM = "EXTRA_EDIT_ITEM";
 
     private DataManager dataManager;
     private TextView label;
@@ -27,6 +28,7 @@ public class EditPersonFragment extends Fragment {
     private int editID = 0;
     private Button cancel;
     private Button save;
+    private Activity activity;
 
     @Nullable
     @Override
@@ -35,8 +37,7 @@ public class EditPersonFragment extends Fragment {
 
         dataManager = DataManager.getInstance();
 
-//        Intent intent = getIntent();
-//        editID = intent.getIntExtra(EXTRA_EDIT_ITEM, 0);
+
         label = view.findViewById(R.id.label);
         name = view.findViewById(R.id.editTextName);
         surname = view.findViewById(R.id.editTextSurname);
@@ -52,9 +53,9 @@ public class EditPersonFragment extends Fragment {
 
 
     @Override
-    public void onResume() {
-        super.onResume();
-
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        activity = (Activity) context;
     }
 
     private void displayPerson(Person person) {
@@ -70,7 +71,7 @@ public class EditPersonFragment extends Fragment {
         int sAge = Integer.valueOf(String.valueOf(age.getText()));
         boolean sDegree = degree.isChecked();
         dataManager.editPerson(editID, sName, sSurname, sAge, sDegree);
-//        finish();
+        Toast.makeText(activity, sName + " saved", Toast.LENGTH_SHORT).show();
     }
 
     private View.OnClickListener clickSave = new View.OnClickListener() {
@@ -90,19 +91,24 @@ public class EditPersonFragment extends Fragment {
         int sAge = Integer.valueOf(String.valueOf(age.getText()));
         boolean sDegree = degree.isChecked();
         dataManager.createPerson(sName, sSurname, sAge, sDegree);
-//        finish();
+        Toast.makeText(activity, sName + " created", Toast.LENGTH_SHORT).show();
     }
 
 
     private View.OnClickListener clickCancel =new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-//            finish();
+            try {
+                ((FragmentCloser) activity).close();
+            } catch (ClassCastException e) {
+            }
+
         }
     };
 
 
     public void displayDetails(int id) {
+        editID = id;
         if (editID == -1) {
             label.setText(R.string.new_person);
             save.setText(R.string.create);
@@ -110,6 +116,11 @@ public class EditPersonFragment extends Fragment {
             displayPerson(dataManager.getPersonById(id));
         }
     }
+
+    public interface FragmentCloser {
+        void close();
+    }
+
 
 }
 
