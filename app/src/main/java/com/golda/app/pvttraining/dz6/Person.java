@@ -1,8 +1,8 @@
-
 package com.golda.app.pvttraining.dz6;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 public class Person {
@@ -10,28 +10,34 @@ public class Person {
     @SerializedName("id")
     @Expose
     private Integer id;
+
     @SerializedName("name")
     @Expose
     private String name;
+
     @SerializedName("surname")
     @Expose
     private String surname;
+
     @SerializedName("age")
     @Expose
     private Integer age;
+
     @SerializedName("isDegree")
     @Expose
     private Boolean isDegree;
 
+    @SerializedName("objectId")
+    @Expose
+    private String objectId;
+
     /**
      * No args constructor for use in serialization
-     * 
      */
     public Person() {
     }
 
     /**
-     * 
      * @param id
      * @param isDegree
      * @param age
@@ -45,6 +51,22 @@ public class Person {
         this.surname = surname;
         this.age = age;
         this.isDegree = isDegree;
+    }
+
+    public Boolean getDegree() {
+        return isDegree;
+    }
+
+    public void setDegree(Boolean degree) {
+        isDegree = degree;
+    }
+
+    public String getObjectId() {
+        return objectId;
+    }
+
+    public void setObjectId(String objectId) {
+        this.objectId = objectId;
     }
 
     public Integer getId() {

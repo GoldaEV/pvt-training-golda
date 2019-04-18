@@ -10,6 +10,11 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -36,4 +41,11 @@ dependencies {
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
     // Optional, if you use support library fragments:
     debugImplementation 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.3'
+
+    //Retrofit
+    def verRetrofit = "2.5.0"
+    implementation "com.squareup.retrofit2:retrofit:$verRetrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$verRetrofit"
+    implementation "com.squareup.okhttp3:logging-interceptor:3.14.0"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$verRetrofit"
 }
