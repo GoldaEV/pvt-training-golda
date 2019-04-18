@@ -16,9 +16,8 @@ public class EditItemActivity extends AppCompatActivity implements EditPersonFra
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_edit_person);
-
         Intent intent = getIntent();
-        int editID = intent.getIntExtra(EXTRA_EDIT_ITEM, 0);
+        String editID = intent.getStringExtra(EXTRA_EDIT_ITEM);
 
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragmentEditPerson);
         if (fragment != null) {
