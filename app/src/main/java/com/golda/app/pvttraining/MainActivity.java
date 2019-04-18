@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.golda.app.pvttraining.cw2.Cw2LoginActivity;
 import com.golda.app.pvttraining.dz1.Dz1Activity;
+import com.golda.app.pvttraining.dz15.ContactsActivity;
 import com.golda.app.pvttraining.dz2.Dz2Activity;
 import com.golda.app.pvttraining.dz3.Dz3Activity;
 import com.golda.app.pvttraining.dz4.Dz4Activity;
@@ -33,6 +34,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         findViewById(R.id.dz5).setOnClickListener(this);;
         findViewById(R.id.dz6).setOnClickListener(this);;
         findViewById(R.id.cw2).setOnClickListener(this);;
+        findViewById(R.id.dz15).setOnClickListener(this);;
 
     }
 
@@ -60,6 +62,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.dz6:
                 startActivity(new Intent(this, Dz6Activity.class));
+                break;
+
+            case R.id.dz15:
+                startActivity(new Intent(this, ContactsActivity.class));
                 break;
         }
     }
