@@ -25,7 +25,7 @@ public class Dz6Activity extends AppCompatActivity  implements PersonsListFragme
 
 
     @Override
-    public void editPerson(int id) {
+    public void editPerson(String id) {
         if (isDualFragment) {
             Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragmentEditPerson);
             if (fragment != null) {

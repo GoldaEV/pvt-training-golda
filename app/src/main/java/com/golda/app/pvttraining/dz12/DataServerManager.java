@@ -74,17 +74,9 @@ public class DataServerManager {
         return degree;
     }
 
-    public void editPerson(int editID, String sName, String sSurname, int sAge, boolean sDegree) {
-        for (Person person : personList) {
-            if (person.getId() == editID) {
-                person.setName(sName);
-                person.setSurname(sSurname);
-                person.setAge(sAge);
-                person.setIsDegree(sDegree);
-                if (changeListener !=null) changeListener.onChanged();
-            }
-        }
-
+    public void editPerson(Person person) {
+        new PersonUpdater().updateItem(person);
+        if (changeListener !=null) changeListener.onChanged();
     }
 
     public boolean isListEmpty() {
@@ -92,25 +84,28 @@ public class DataServerManager {
     }
 
     public void removeItem(Person item) {
-        personList.remove(item);
+        new PersonRemover().removeItem(item);
         if (changeListener !=null) changeListener.onChanged();
     }
 
-    public void createPerson(String sName, String sSurname, int sAge, boolean sDegree) {
-        int newID = new Random().nextInt();
-        Person person = new Person(newID, sName, sSurname, sAge, sDegree);
-        personList.add(person);
+
+    public void createItem(Person person) {
+        new PersonCreator().createItem(person);
         if (changeListener != null) changeListener.onChanged();
     }
 
-    public Person getPersonById(int id) {
+    public Person getPersonById(String id) {
         Person person = new Person();
         for (Person per : personList) {
-            if (per.getId() == id) {
+            if (per.getObjectId().equals(id)) {
                 person = per;
             }
         }
         return person;
+    }
+
+    public void getPersons() {
+        new PersonsLoader().loadData();
     }
 
     public interface ChangeListener {

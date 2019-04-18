@@ -53,6 +53,21 @@ public class Person {
         this.isDegree = isDegree;
     }
 
+    public Person(String name, String surname, Integer age, Boolean isDegree, String objectId) {
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.isDegree = isDegree;
+        this.objectId = objectId;
+    }
+
+    public Person(String name, String surname, Integer age, Boolean isDegree) {
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.isDegree = isDegree;
+    }
+
     public Boolean getDegree() {
         return isDegree;
     }

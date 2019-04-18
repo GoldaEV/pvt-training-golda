@@ -15,11 +15,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.golda.app.pvttraining.R;
+import com.golda.app.pvttraining.dz12.DataServerManager;
+import com.golda.app.pvttraining.dz12.PersonsLoader;
 
 public class PersonsListFragment extends Fragment {
 
     private static final String URL_STRING = "http://kiparo.ru/t/test.json";
-    private DataManager dataManager;
+    private DataServerManager dataManager;
     private RecyclerView recyclerView;
     private MyListAdapter myListAdapter;
     private Activity activity;
@@ -32,8 +34,8 @@ public class PersonsListFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        dataManager = DataManager.getInstance();
-        dataManager.setChangeListener(new DataManager.ChangeListener() {
+        dataManager = DataServerManager.getInstance();
+        dataManager.setChangeListener(new DataServerManager.ChangeListener() {
             @Override
             public void onChanged() {
                 myListAdapter.notifyDataSetChanged();
@@ -55,7 +57,7 @@ public class PersonsListFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        if (dataManager.isListEmpty()) new DataLoader().loadData(getContext(), URL_STRING);
+        if (dataManager.isListEmpty()) new PersonsLoader().loadData();
     }
 
     @Override
@@ -69,7 +71,7 @@ public class PersonsListFragment extends Fragment {
         @Override
         public void onClick(Person item) {
             try {
-                ((EditableConnector) activity).editPerson(item.getId());
+                ((EditableConnector) activity).editPerson(item.getObjectId());
             } catch (ClassCastException e) {
             }
         }
@@ -101,7 +103,7 @@ public class PersonsListFragment extends Fragment {
         @Override
         public void onClick(View view) {
             try {
-                ((EditableConnector) activity).editPerson(-1);
+                ((EditableConnector) activity).editPerson("");
             } catch (ClassCastException e) {
             }
         }
@@ -109,6 +111,6 @@ public class PersonsListFragment extends Fragment {
 
     public interface EditableConnector {
 
-        void editPerson(int id);
+        void editPerson(String id);
     }
 }
