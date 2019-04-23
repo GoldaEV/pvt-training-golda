@@ -14,22 +14,29 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="com.golda.app.pvttraining.MainActivity">
+        <provider
+            android:name=".content_provider.MyContentProvider"
+            android:authorities="com.golda.pvtTraining.provider"
+            android:enabled="true"
+            android:exported="true"></provider>
+
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.golda.app.pvttraining.dz1.Dz1Activity" />
-        <activity android:name="com.golda.app.pvttraining.dz2.Dz2Activity" />
-        <activity android:name="com.golda.app.pvttraining.dz3.Dz3Activity" />
-        <activity android:name="com.golda.app.pvttraining.dz4.Dz4Activity" />
-        <activity android:name="com.golda.app.pvttraining.dz5.Dz5Activity" />
-        <activity android:name="com.golda.app.pvttraining.dz6.Dz6Activity" />
-        <activity android:name="com.golda.app.pvttraining.dz6.EditItemActivity" />
-        <activity android:name="com.golda.app.pvttraining.cw2.Cw2LoginActivity"/>
+        <activity android:name=".dz1.Dz1Activity" />
+        <activity android:name=".dz2.Dz2Activity" />
+        <activity android:name=".dz3.Dz3Activity" />
+        <activity android:name=".dz4.Dz4Activity" />
+        <activity android:name=".dz5.Dz5Activity" />
+        <activity android:name=".dz6.Dz6Activity" />
+        <activity android:name=".dz6.EditItemActivity" />
+        <activity android:name=".cw2.Cw2LoginActivity" />
 
-        <service android:name="com.golda.app.pvttraining.dz5.MyService" />
+        <service android:name=".dz5.MyService" />
     </application>
 
 </manifest>
